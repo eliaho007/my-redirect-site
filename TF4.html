@@ -4,25 +4,24 @@
 <meta charset="UTF-8">
 <title>ThaiFriendly Direct Open</title>
 <script>
-function getUsername() {
+function getUsernameFromURL() {
+    // שולף את הפרמטר אחרי ה־?
     const params = window.location.search.substring(1);
     return params ? params : null;
 }
 
-function openApp() {
-    const username = getUsername();
+function openThaiFriendly() {
+    const username = getUsernameFromURL();
     if (!username) return;
 
+    // שומר ב־localStorage שהמשתמש רוצה את האפליקציה
     window.localStorage.setItem('useapp', '1');
 
-    // Intent URL ל־Android
-    const intentUrl = 'intent://prof=' + username + '&x=4187468#Intent;scheme=thaifriendly;package=com.thaifriendly.app;end';
-
-    // פשוט window.location.href
-    window.location.href = intentUrl;
+    // URL של האפליקציה עם x קבוע
+    window.location.href = 'thaifriendly://prof=' + username + '&x=4187468';
 }
 
-window.onload = openApp;
+window.onload = openThaiFriendly;
 </script>
 </head>
 <body>
