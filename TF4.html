@@ -2,32 +2,49 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Open ThaiFriendly App</title>
+<title>ThaiFriendly Redirect</title>
+
 <script>
-function openProfile() {
-    // קבלת המשתמש מה־query string
-    const params = new URLSearchParams(window.location.search);
-    const user = params.keys().next().value; // מקבל את המפתח הראשון, לדוגמה Sky382
-    if (!user) return;
+function popper() {
 
-    // שמירת useapp
-    window.localStorage.setItem('useapp', '1');
+  // תמיד להפעיל שימוש באפליקציה
+  window.localStorage.setItem('useapp','1');
 
-    // הפניה ישירה לאפליקציה עם x קבוע
-    window.location.href = 'thaifriendly://prof=' + user + '&x=4187468';
+  // קבלת שם המשתמש מה־URL
+  // עובד עם:
+  // ?Sky382
+  // ?username=Sky382
+  let username = "";
+
+  const query = window.location.search.substring(1);
+
+  if (query.includes("=")) {
+      const params = new URLSearchParams(window.location.search);
+      username = params.values().next().value;
+  } else {
+      username = query;
+  }
+
+  if (!username) return;
+
+  // ⭐ הדבר היחיד שבאמת צריך
+  window.location.href =
+      'thaifriendly://prof=' + username + '&x=4187468';
 }
 
-// מריץ מיד עם טעינת הדף
-window.onload = openProfile;
+// הפעלה מיד כשהדף נטען
+window.onload = popper;
 </script>
+
 <style>
-/* מוסיף רק רקע שחור כדי למנוע כוכב בולט */
-body {
-    margin: 0;
-    height: 100vh;
-    background: #000;
+/* מסתיר לגמרי את הדף כדי שלא יראו "כוכב" */
+html,body{
+  margin:0;
+  background:#000;
+  height:100%;
 }
 </style>
+
 </head>
 <body>
 </body>
