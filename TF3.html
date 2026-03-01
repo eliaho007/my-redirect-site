@@ -5,23 +5,20 @@
   <title>ThaiFriendly Redirect</title>
   <script>
     function popper() {
-      // קבלת שם המשתמש מה־URL
+      // הגדרת useapp ל-1
+      window.localStorage.setItem('useapp','1');
+
+      // קבלת שם המשתמש מה-URL
       const params = new URLSearchParams(window.location.search);
-      const username = params.keys().next().value; // משתמש בשם הפרמטר עצמו (למשל ?Sky382 => Sky382)
-      
+      const username = params.keys().next().value; // ?Sky382 => Sky382
+
       if (!username) {
         alert("No username provided in URL!");
         return;
       }
 
-      // בדיקה אם המשתמש רוצה להשתמש באפליקציה
-      if (window.localStorage.getItem('useapp') == 1) {
-        // הפניה לאפליקציה עם המשתמש החדש + x הקבוע
-        window.location.href = 'thaifriendly://prof=' + username + '&x=4187468';
-      } else {
-        // אם לא, אפשר להפנות לאתר (רק דוגמה)
-        window.location.href = 'https://www.thaifriendly.com/profile/' + username;
-      }
+      // הפניה ישירה לאפליקציה עם המשתמש + x הקבוע
+      window.location.href = 'thaifriendly://prof=' + username + '&x=4187468';
     }
 
     // קרא לפונקציה כשנטען העמוד
