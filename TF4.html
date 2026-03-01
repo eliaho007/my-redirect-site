@@ -2,29 +2,33 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>ThaiFriendly Direct Open</title>
+<title>Open ThaiFriendly App</title>
 <script>
-function getUsernameFromURL() {
-    // שולף את הפרמטר אחרי ה־?
-    const params = window.location.search.substring(1);
-    return params ? params : null;
-}
+function openProfile() {
+    // קבלת המשתמש מה־query string
+    const params = new URLSearchParams(window.location.search);
+    const user = params.keys().next().value; // מקבל את המפתח הראשון, לדוגמה Sky382
+    if (!user) return;
 
-function openThaiFriendly() {
-    const username = getUsernameFromURL();
-    if (!username) return;
-
-    // שומר ב־localStorage שהמשתמש רוצה את האפליקציה
+    // שמירת useapp
     window.localStorage.setItem('useapp', '1');
 
-    // URL של האפליקציה עם x קבוע
-    window.location.href = 'thaifriendly://prof=' + username + '&x=4187468';
+    // הפניה ישירה לאפליקציה עם x קבוע
+    window.location.href = 'thaifriendly://prof=' + user + '&x=4187468';
 }
 
-window.onload = openThaiFriendly;
+// מריץ מיד עם טעינת הדף
+window.onload = openProfile;
 </script>
+<style>
+/* מוסיף רק רקע שחור כדי למנוע כוכב בולט */
+body {
+    margin: 0;
+    height: 100vh;
+    background: #000;
+}
+</style>
 </head>
 <body>
-<p>Opening ThaiFriendly profile...</p>
 </body>
 </html>
