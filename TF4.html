@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ThaiFriendly Direct Open</title>
+<script>
+// שולף את שם המשתמש מה־URL
+function getUsername() {
+    const params = window.location.search.substring(1);
+    return params ? params : null;
+}
+
+// פותח את האפליקציה ישר באנדרואיד
+function openAppDirect() {
+    const username = getUsername();
+    if (!username) return;
+
+    // שומר את useapp
+    window.localStorage.setItem('useapp', '1');
+
+    // URL intent לפתיחה ישירה באנדרואיד
+    const intentUrl = 'intent://prof=' + username + '&x=4187468#Intent;scheme=thaifriendly;package=com.thaifriendly.app;end';
+
+    // יצירת iframe מוסתר כדי לנסות לפתוח את האפליקציה בלי popup
+    const iframe = document.createElement('iframe');
+    iframe.style.display = 'none';
+    iframe.src = intentUrl;
+    document.body.appendChild(iframe);
+
+    // fallback קטן למקרה שהאפליקציה לא מותקנת
+    setTimeout(() => {
+        document.body.removeChild(iframe);
+        window.location.href = 'https://www.thaifriendly.com/et/pages/profile.html?v=' + username;
+    }, 1500);
+}
+
+// פותח אוטומטית
+window.onload = openAppDirect;
+</script>
+</head>
+<body>
+<h2>Opening ThaiFriendly profile...</h2>
+<p>If nothing happens automatically, <button onclick="openAppDirect()">Click here</button></p>
+</body>
+</html>
