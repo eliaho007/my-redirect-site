@@ -22,10 +22,10 @@ if(!profile){
     const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
     if(isMobile){
-        // הפניה ישירה לאפליקציה עם x הקבוע
+        // הפניה ישירה לאפליקציה עם הפרופיל + x הקבוע
         window.location.href = 'thaifriendly://prof=' + profile + '&x=4187468';
     } else {
-        // הפניה לאתר למחשבים
+        // הפניה למחשבים לאתר
         window.location.href = 'https://www.thaifriendly.com/' + profile;
     }
 }
