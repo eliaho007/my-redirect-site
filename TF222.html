@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+  <html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>My App</title>
+    <style>
+      .logo {
+        position: absolute;
+        width: 100%;
+        top: 10%;
+        -webkit-transform: translate(0%, -10%);
+        transform: translate(0%, -10%);
+        margin: 0px 0px 0px -8px;
+      }
+
+      .logo img {
+        width: 200px;
+        height: 108px;
+        border: none;
+      }
+
+      .page {
+        text-align: center;
+        background-color: #b9dbff;
+        font-family: "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
+        -webkit-transform-style: preserve-3d;
+        -moz-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+        overflow: hidden;
+        min-height: 100%;
+      }
+
+      html,
+      body {
+        height: 100%;
+        margin: 0px;
+        padding: 0px;
+      }
+
+      .appButtons {
+        position: absolute;
+        width: 100%;
+        top: 50%;
+        -webkit-transform: translate(0%, -50%);
+        transform: translate(0%, -50%);
+        margin: 0px;
+      }
+
+      .button {
+        width: 80%;
+        border-radius: 6px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 17px;
+        margin-top: 20px;
+      }
+
+      .useapp {
+        background-color: #ffffff;
+        color: #555;
+        font-weight: bold;
+        border: 1.5px solid #77baff;
+      }
+
+      .useapp img {
+        margin-top: 10px;
+      }
+
+      .useweb {
+        border: 0.5px solid #ccc;
+        color: #555;
+        background-color: white;
+      }
+    </style>
+    <script>
+      
+      function popper() {
+        if (window.localStorage.getItem('useapp') == 1) {
+          //window.location='intent://prof=Guitar546#Intent;scheme=thaifriendly;package=com.thaifriendly.app;end';
+          window.location.href = 'thaifriendly://prof=Nam9478&x=4187468';
+        }
+      }
+    </script>
+
+  </head>
+
+  <body>
+    <div class="page">
+      <div class="appButtons">
+        <div class="button useapp" onclick="window.localStorage.setItem('useapp', '1');popper()">Open in the ThaiFriendly App<br /><img src='https://www.thaifriendly.com/i/tf-rounded-200px.png' width='75' height='75' /></div>
+        <div class="button useweb" onclick="window.localStorage.setItem('useapp', '0');window.location='https://www.thaifriendly.com/Guitar546'">Mobile web please</div>
+        <div style='text-align:center' onclick="window.location='https://play.google.com/store/apps/details?id=com.thaifriendly.app'"><br /><br />Don't have the app installed yet?<br />Download the app first:
+          <br /><br /><img id='wxx' src="https://www.thaifriendly.com/i/en_app_rgb_wo_60.png" alt="Download ThaiFriendly app" onload="popper()">
+        </div>
+      </div>
+    </div>
+
+  </body>
+
+  </html>
